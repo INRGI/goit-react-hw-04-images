@@ -1,48 +1,44 @@
 import PropTypes from 'prop-types';
 import { IoSearchSharp } from "react-icons/io5";
-import { Component } from 'react';
+import { useState } from 'react';
 import { Form, FormButton, Header, Input, Label } from './Searchbar.styled';
 
-class Searchbar extends Component {
-    state = {
-        searchName: '',
-        inputValue: '',
-    };
+const SearchBar = ({onSubmit}) => {
+    const [searchName, setSearchName] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
-    handleChange = event => {
-        this.setState({ inputValue: event.target.value });
-    };
+    const handleChange = event => setInputValue(event.target.value);
 
-    handleSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
-        this.props.onSubmit(event.target.elements.searchName.value.trim());
+        setSearchName(inputValue.trim());
+        onSubmit(searchName);
         event.target.reset();
     };
 
-    render() {
-        return (
+    return (
           <Header>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                     <FormButton type="submit">
                     <IoSearchSharp size={24}/>
                     <Label>Search</Label>
                 </FormButton>
 
-                    <Input
+                <Input
+                    value={inputValue}
                     name="searchName"
                     type="text"
                     autocomplete="off"
                     placeholder="Search images and photos"
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                 />
             </Form>
         </Header>
-      ); 
-    };
+      );
 };
 
-Searchbar.propTypes = {
+SearchBar.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 };
 
-export default Searchbar;
+export default SearchBar;

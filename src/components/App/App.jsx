@@ -1,4 +1,4 @@
-import Searchbar from 'components/Searchbar';
+import SearchBar from 'components/Searchbar';
 import { Component } from 'react';
 import * as API from '../../services/PixabayApi';
 import { ToastContainer, toast} from 'react-toastify';
@@ -78,7 +78,7 @@ class App extends Component{
 
     return (
           <div>
-        <Searchbar onSubmit={this.handleSubmit} />
+        <SearchBar onSubmit={this.handleSubmit} />
        
         <ImageGallery images={images} />
         
