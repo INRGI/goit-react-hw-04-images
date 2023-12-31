@@ -1,11 +1,5 @@
-<h1 align="center">Pixabay image search application</h1>
+<h1 align="center" style="color: red;">Pixabay image search application</h1>
 
-<table style="margin: auto;">
-  <tr>
-    <td style="color: red;">Pixabay</td>
-    <td>image search application</td>
-  </tr>
-</table>
 
   
 ![image](https://github.com/INRGI/goit-react-hw-04-images/assets/120032162/64617433-0c89-4d1c-ab45-84b4c5fbcdc8)
