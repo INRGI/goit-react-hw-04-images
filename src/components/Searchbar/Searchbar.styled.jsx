@@ -14,10 +14,39 @@ export const Header = styled.header`
     padding-top: 12px;
     padding-bottom: 12px;
     color: #fff;
-    background-color: #3f51b5;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
     margin-bottom: 20px;
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+    &::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+    }
+
+
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 `;
 
 export const Form = styled.form`
@@ -67,8 +96,9 @@ export const Input = styled.input`
     font-size: 20px;
     border: none;
     outline: none;
-    padding-left: 4px;
+    padding-left: 10px;
     padding-right: 4px;
+
 
     &::placeholder {
     font: inherit;

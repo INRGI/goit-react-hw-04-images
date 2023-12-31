@@ -10,9 +10,9 @@ export const Img = styled.img`
   height: 260px;
   object-fit: cover;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 8px;
+  border-radius: 10px;
   &:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   cursor: zoom-in;
 }  
 `;
