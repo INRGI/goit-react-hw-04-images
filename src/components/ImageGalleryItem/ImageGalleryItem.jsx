@@ -19,12 +19,12 @@ const ImageGalleryItem = ({image}) => {
                     onClick={toggleModal}
                 />
                 {showModal && (
-            <Modal
-                largeImageURL={image.largeImageURL}
-                tags={image.tags}
-                onClose={toggleModal}        
-            />
-            )}
+                    <Modal
+                        largeImageURL={image.largeImageURL}
+                        tags={image.tags}
+                        onClose={toggleModal}        
+                    />
+                )}
             </Li>
         );
 };
