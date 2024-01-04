@@ -1,5 +1,5 @@
 import SearchBar from 'components/Searchbar';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as API from '../../services/PixabayApi';
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +13,9 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const galleryRef = useRef(null);
+  const firstNewElementRef = useRef(null);
 
   useEffect(() => {
     if (searchName === '') {
@@ -31,7 +34,18 @@ const App = () => {
           });
         };
         
-        setImages(prev => [...prev, ...data.hits]);
+        setImages((prev) => {
+          const newImages = [...prev, ...data.hits];
+          
+          if (firstNewElementRef.current) {
+            setTimeout(() => {
+              firstNewElementRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 0);
+          }
+
+          return newImages;
+        });
+
         setIsLoading(false);
         setTotalPages(Math.ceil(data.totalHits / 12));
 
@@ -60,7 +74,7 @@ const App = () => {
     <div>
       <SearchBar onSubmit={handleSubmit} />
        
-      <ImageGallery images={images} />
+      <ImageGallery images={images} galleryRef={galleryRef} firstNewElementRef={firstNewElementRef} />
         
       {isLoading && <Loader/>}
       {images.length > 0 && totalPages !== currentPage && !isLoading && (
